@@ -521,7 +521,7 @@ function matchRun (run, stravaRuns) {
   for (var j = 0; j < stravaRuns.length; j++) {
     var stravaRun = stravaRuns[j];
     // console.log('comparing strava: ', moment(stravaRun.start_date).format('YYYY-MM-DD'), run.distance, 'to r2w: ', moment(run.date).format('YYYY-MM-DD'), stravaRun.distance);
-    if (moment(stravaRun.start_date).format('YYYY-MM-DD') === moment(run.date).format('YYYY-MM-DD') && (stravaRun.distance > run.distance - 800 && stravaRun.distance < run.distance + 800)) {
+    if (moment(stravaRun.start_date_local).format('YYYY-MM-DD') === moment(run.date).format('YYYY-MM-DD') && (stravaRun.distance > run.distance - 800 && stravaRun.distance < run.distance + 800)) {
       // console.log(stravaRun.distance, run.distance);
       if (run.description.length !== 0) {
         // update run with r2w description
