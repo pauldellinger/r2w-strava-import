@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var compression = require('compression');
 var helmet = require('helmet');
+var favicon = require('serve-favicon');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -40,7 +41,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter); // Add catalog routes to middleware chain.
 
-app.use(express.favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
