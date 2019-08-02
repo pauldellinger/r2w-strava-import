@@ -166,7 +166,7 @@ exports.activity_import_post = [
         (async () => {
           // var r2w_user = req.body.r2w_username;
 
-          const browser = await puppeteer.launch();
+          const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
           const page = await browser.newPage();
           await page.goto('http://www.running2win.com//index.asp?login=Demo');
           await page.waitFor(() => document.querySelector('#leftcolumn > div > div.sideContainer > table > tbody > tr > td'));
