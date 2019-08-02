@@ -34,7 +34,7 @@ block content
       li There are no Activities.
   hr
   p #[strong User: ]
-    a(href='/catalog/user/'+ user.id) #{user.name}
+    a(href=user.url) #{user.name}
   if activity_list.length!=0
     p
       a(href='activities/export') Export All Activities to Strava

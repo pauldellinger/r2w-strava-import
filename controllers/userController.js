@@ -48,6 +48,7 @@ exports.user_detail = function (req, res, next) {
       return next(err);
     }
     // successful, render
+    console.log(results.user);
     res.render('user_detail', { title: results.user.name, user: results.user });
   });
 };
@@ -115,8 +116,11 @@ exports.token_exchange_get = function (req, res, next) {
       { strava_id: bodyJson.athlete.id },
       {
         $set: {
+          name: bodyJson.athlete.firstname + ' ' + bodyJson.athlete.lastname,
           access_token: bodyJson.access_token,
-          refresh_token: bodyJson.refresh_token
+          refresh_token: bodyJson.refresh_token,
+          strava_id: bodyJson.athlete.id,
+          strava_pic: bodyJson.athlete.profile
         }
       },
       op, function (err, result) {

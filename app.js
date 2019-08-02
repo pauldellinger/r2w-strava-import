@@ -15,7 +15,9 @@ var app = express();
 app.use(helmet());
 var mongoose = require('mongoose');
 // setup default mongoose connection
-var mongoDB = 'mongodb+srv://pauldellinger:transom@cluster0-rnpoq.gcp.mongodb.net/test?retryWrites=true&w=majority';
+var dev_db_url = 'mongodb+srv://pauldellinger:transom@cluster0-rnpoq.gcp.mongodb.net/test?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
+
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 // get default connection
 var db = mongoose.connection;

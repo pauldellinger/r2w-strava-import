@@ -50,6 +50,7 @@ exports.activity_list = function (req, res, next) {
     }
     // successful, render
     // console.log('activity list : ', results.list_activities);
+    console.log(results.user);
     res.render('activity_list', { title: 'Activity List', activity_list: results.list_activities, user: results.user });
   });
 };
@@ -284,7 +285,7 @@ exports.activity_import_post = [
               });
             }
           }
-          res.redirect('/catalog/user/' + req.params.id + '/activities/finish');
+          res.redirect('/catalog/user/' + req.params.id + '/activities');
           // ...
         })();
       });

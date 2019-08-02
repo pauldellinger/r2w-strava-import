@@ -9,8 +9,8 @@ block content
   p #[strong Description:] #{activity.description}
   p #[strong GPS Id:] #{activity.gpsId}
   p #[strong User: ]
-    a(href='/catalog/user/'+ activity.user.id) #{activity.user.name}
-  // p #[Strong User Code:] #{activity.user.access_token}
+    a(href=activity.user.url) #{activity.user.name}
+  // p #[Strong User Code:] #{activity.user.url}
   hr
   p
     a(href=activity.url+'/delete') Delete Activity
