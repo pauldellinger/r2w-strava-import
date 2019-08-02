@@ -1,0 +1,18 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+
+    block content
+    h1= title
+    p Welcome to the #[em Running2Win Importer], a very basic Express website used to import R2W runs into Strava.
+
+    a(href="http://www.strava.com/oauth/authorize?client_id=36915&response_type=code&redirect_uri=http://localhost:3000/catalog/user/exchange_token&approval_prompt=force&scope=read,activity:read_all,activity:write")
+      img(src='/images/btn_strava_connectwith_orange.svg')

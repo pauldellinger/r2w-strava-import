@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 #{title}: #{activity.name}
+  p= activity.date
+  p= activity.distance
+  p= activity.time
+  p= activity.description
+
+
+  p Do you really want to delete this Activity?
+
+  form(method='POST' action='')
+    div.form-group
+      input#activityid.form-control(type='hidden',name='activityid', required='true', value=activity._id )
+
+    button.btn.btn-primary(type='submit') Delete

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='name') Name:
+      input#name.form-control(type='text' placeholder='Activity Name' name='name' required='true' value=(undefined===activity ? '' : activity.name) )
+      label(for='distance') Distance:
+      input#distance.form-control(type='number' placeholder='Activity Distance (meters)' name='distance' required='true' value=(undefined===activity ? '' : activity.distance))
+      label(for='time') Time:
+      input#time.form-control(type='number' placeholder='Activity Time in seconds' name='time' required='false' value=(undefined===activity ? '' : activity.time) )
+      label(for='description') Name:
+      input#description.form-control(type='text' placeholder='Activity Description' name='description' required='false' value=(undefined===activity ? '' : activity.description) )
+    div.form-group
+      label(for='date') Date:
+      input#date.form-control(type='date' name='date' value=(undefined===activity ? '' : activity.date) )
+    button.btn.btn-primary(type='submit') Submit
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

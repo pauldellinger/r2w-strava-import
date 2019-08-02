@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 #{activity.name}
+
+  p #[strong Date:] #{activity.date}
+  p #[strong Distance:] #{activity.distance}
+  p #[strong Time:] #{activity.time}
+  p #[strong Description:] #{activity.description}
+  p #[strong GPS Id:] #{activity.gpsId}
+  p #[strong User: ]
+    a(href='/catalog/user/'+ activity.user.id) #{activity.user.name}
+  // p #[Strong User Code:] #{activity.user.access_token}
+  hr
+  p
+    a(href=activity.url+'/delete') Delete Activity

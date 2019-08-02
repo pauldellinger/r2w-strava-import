@@ -1,0 +1,34 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+
+    block content
+      h1 #{user.name}
+      // p= user.access_token
+      // p= user.refresh_token
+      // p= user.strava_id
+      img.img(src=user.strava_pic)
+      br
+      br
+      br
+      a(href='/catalog/user/' + user.id + '/import/')
+        button(type="button", style = 'alignment: center; background-color: #F24405; border: none; color: white; font-size: 40px; padding: 15px 32px; border-radius: 25px; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);') Import Running2Win Activities
+      br
+      br
+      br
+      a(href='http://www.running2win.com/myprofile.asp?', target='_blank')
+        The Log Must be a public log (follow link to running2win profile settings, and you can change back to private immediately after import)
+      br
+      br
+      p
+        a(href= user.url+'/activities') User Activities
+      p
+        a(href=user.url+'/delete') Delete User

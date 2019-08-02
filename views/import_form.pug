@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+
+block content
+  h1=title
+
+  form(method='POST' action='' onsubmit="submitter.disabled = true;")
+    div.form-group
+      label(for='r2w_username') First Name:
+      input#r2w_username.form-control(type='text' placeholder='Enter your running2win username' name='r2w_username' required='true' value=(undefined===username ? '' : username.r2w_username) )
+
+    br
+    br
+    p Sync Dates:
+    div.form-group
+      input#startDate.form-control(type='date' name='startDate' required='true' placeholder='starting on' style='float: left; width:50%')
+
+      input#endDate.form-control(type='date' name='endDate' required='true' style='float: center; width:50%')
+      br
+      button.btn.btn-primary(type='submit' id = 'submitter') Submit
+    p #[strong Must set log to public to import]
+    p This usually takes ~30 seconds, depending on how many runs you have
+  p #[strong User: ]
+    a(href='/catalog/user/'+ user.id) #{user.name}
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
