@@ -48,7 +48,7 @@ exports.user_detail = function (req, res, next) {
       return next(err);
     }
     // successful, render
-    console.log(results.user);
+    // console.log(results.user);
     res.render('user_detail', { title: results.user.name, user: results.user });
   });
 };
