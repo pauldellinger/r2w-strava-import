@@ -12,6 +12,8 @@ const IMDB_URL = (movie_id) => `https://www.imdb.com/title/${movie_id}/`;
 const MOVIE_ID = `tt6763664`;
 
 exports.index = function (req, res) {
+  var dev_authorize_url = "http://www.strava.com/oauth/authorize?client_id=36915&response_type=code&redirect_uri=https://activityimporter.herokuapp.com/catalog/user/exchange_token&approval_prompt=force&scope=read,activity:read_all,activity:write";
+  var url = process.env.AUTHORIZE_URL || dev_authorize_url;
   async.parallel({
     book_count: function (callback) {
       Book.countDocuments({}, callback); // Pass an empty object as match condition to find all documents of this collection
@@ -32,7 +34,7 @@ exports.index = function (req, res) {
       Activity.countDocuments({}, callback);
     }
   }, function (err, results) {
-    res.render('index', { title: 'Local Library Home', error: err, data: results });
+    res.render('index', { title: 'Local Library Home', url: url, error: err, data: results });
   });
 };
 
