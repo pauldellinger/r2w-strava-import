@@ -40,6 +40,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter); // Add catalog routes to middleware chain.
 
+app.use(express.favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
