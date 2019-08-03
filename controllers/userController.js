@@ -123,11 +123,20 @@ exports.token_exchange_get = function (req, res, next) {
           strava_pic: bodyJson.athlete.profile
         }
       },
-      op, function (err, result) {
+      {
+        upsert: true
+      }, function (err, result) {
         if (err) { return next(err); }
         // Successful, redirect to new author record
-        res.redirect(result.url);
+        User.findOne({ strava_id: bodyJson.athlete.id }
+          , function (err, result) {
+            if (err) { return next(err); }
+            res.redirect(result.url);
+          });
       });
+  });
+};
+
         /*
     User.findOne({ strava_id: bodyJson.athlete.id }, function (err, found) {
       if (err) {
@@ -159,8 +168,7 @@ exports.token_exchange_get = function (req, res, next) {
       };
     });
     */
-  });
-};
+
 
 exports.user_finish_get = function (req, res, next) {
   // console.log(req.params.id);
