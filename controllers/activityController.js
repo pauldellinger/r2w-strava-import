@@ -449,7 +449,8 @@ function getActivities (page, stravaRuns, token, before, after) {
     headers: {
       'User-Agent': 'Request-Promise'
     },
-    json: true // Automatically parses the JSON string in the response
+    json: true, // Automatically parses the JSON string in the response
+    resolveWithFullResponse: true
   };
 
   return rp(options)
@@ -479,6 +480,7 @@ function updateRun (id, description, token) {
     headers: {
       'User-Agent': 'Request-Promise'
     },
+    resolveWithFullResponse: true,
     json: true // Automatically parses the JSON string in the response
   };
   return rp(options)
@@ -504,6 +506,7 @@ function createActivity (run) {
       distance: run.distance,
       access_token: run.user.access_token
     },
+    resolveWithFullResponse: true,
     headers: {
       'User-Agent': 'Request-Promise'
     },
