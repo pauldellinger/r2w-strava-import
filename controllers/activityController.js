@@ -455,13 +455,18 @@ function getActivities (page, stravaRuns, token, before, after) {
 
   return rp(options)
     .then(function (res) {
-      console.log(res.statusCode);
-      stravaRuns = stravaRuns.concat(res);
-      if (res.length < 200) {
-        // console.log('in function: ', stravaRuns.length);
-        return stravaRuns;
+      if (parseInt(res.statusCode) == 429) {
+        var err = new Error('Rate Limit Exceeded');
+        err.status = 429;
+        return (err);
       } else {
-        return getActivities(page + 1, stravaRuns, token, before, after);
+        stravaRuns = stravaRuns.concat(res.body);
+        if (res.body.length < 200) {
+          // console.log('in function: ', stravaRuns.length);
+          return stravaRuns;
+        } else {
+          return getActivities(page + 1, stravaRuns, token, before, after);
+        }
       }
     })
     .catch(function (err) {
@@ -485,7 +490,12 @@ function updateRun (id, description, token) {
   };
   return rp(options)
     .then(function (res) {
-      console.log(res.statusCode);
+      // console.log(res.statusCode);
+      if (parseInt(res.statusCode) == 429) { // No results.
+        var err = new Error('Rate Limit Exceeded');
+        err.status = 429;
+        return (err);
+      } else return res.body;
       // console.log(res.description);
     })
     .catch(function (err) {
@@ -514,8 +524,11 @@ function createActivity (run) {
   };
   return rp(options)
     .then(function (res) {
-      console.log(res.statusCode);
-      // console.log('creating: ', res.name);
+      if (parseInt(res.statusCode) == 429) { // No results.
+        var err = new Error('Rate Limit Exceeded');
+        err.status = 429;
+        return (err);
+      } else return res.body;
     })
     .catch(function (err) {
       // API call failed...
