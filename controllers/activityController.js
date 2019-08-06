@@ -454,6 +454,7 @@ function getActivities (page, stravaRuns, token, before, after) {
 
   return rp(options)
     .then(function (res) {
+      console.log(res.statusCode);
       stravaRuns = stravaRuns.concat(res);
       if (res.length < 200) {
         // console.log('in function: ', stravaRuns.length);
@@ -482,7 +483,7 @@ function updateRun (id, description, token) {
   };
   return rp(options)
     .then(function (res) {
-      // console.log(res);
+      console.log(res.statusCode);
       // console.log(res.description);
     })
     .catch(function (err) {
@@ -510,6 +511,7 @@ function createActivity (run) {
   };
   return rp(options)
     .then(function (res) {
+      console.log(res.statusCode);
       // console.log('creating: ', res.name);
     })
     .catch(function (err) {
